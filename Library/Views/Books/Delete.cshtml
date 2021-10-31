@@ -1,0 +1,39 @@
+﻿@model Library.Models.Book
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Are you sure to Delete</h2>
+
+
+@*<a href="@Url.Action("Index","Books",new { id=Model.Id})" class="btn btn-success">
+        <i class="icofont-edit-alt"></i>
+        Edit
+    </a>*@
+
+<br />
+<br />
+@using (Html.BeginForm("Delete", "Books"))
+{
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            @Model.Name
+        </li>
+        <li class="list-group-item">
+            @Model.Author
+        </li>
+        <li class="list-group-item">
+            @Model.Category.CatgName
+        </li>
+        <li class="list-group-item">
+            @Model.AddedDate
+        </li>
+        <li class="list-group-item">
+            @Model.Descreption
+        </li>
+
+    </ul>
+    <button type="submit" class="btn btn-danger">
+        Delete
+    </button>
+}

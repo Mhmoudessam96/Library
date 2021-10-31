@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Library.Models.Book>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-primary">Books</h2>
+<hr />
+<a href="@Url.Action("Create")" class="btn btn-primary my-4">
+    <i class="icofont-plus"></i>
+    Add New Book
+</a>
+<br /><br />
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Added Date</th>
+                <th>Edite</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(item.Name,"Details","Books", new { id = item.Id },null)</td>
+                    <td>@item.Author</td>
+                    <td>@item.Category.CatgName</td>
+                    <td>@item.Descreption</td>
+                    <td>@item.AddedDate</td>
+                    <td>
+                        <a href="@Url.Action("Edit","Books",new { id=item.Id})" class="btn btn-success">
+                            <i class="icofont-edit-alt"></i>
+                            Edit
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Delete","Books",new { id=item.Id})" class="btn btn-danger">
+                            <i class="icofont-ui-delete"></i>
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-danger ">
+        No Data Added Yet
+    </div>
+}
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            toastr.success("jc");
+        }
+        );
+    </script>
+}
